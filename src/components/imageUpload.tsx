@@ -49,7 +49,7 @@ export default function ImageUpload({ images, setImages }: ImageUploadProps) {
 
       {error && <p className="text-red-500 mt-2">{error}</p>}
 
-      <div className="mt-4 p-4 grid grid-cols-4 max-h-72 gap-4 overflow-y-auto">
+      <div className="mt-4 p-4 grid grid-cols-4 max-h-80 gap-4 overflow-y-auto">
         {images.map((file, index) => (
           <div key={index} className="relative">
             <Image

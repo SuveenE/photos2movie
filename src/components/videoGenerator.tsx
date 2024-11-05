@@ -97,34 +97,44 @@ export default function VideoGenerator({
   }, [triggerGeneration]);
 
   return (
-    <div className="w-full max-w-3xl">
-      {videoUrl && progress === 100 ? (
-        <div className="mt-4 space-y-4 ">
-          <video
-            controls
-            className="w-full rounded-lg w-72 md:h-[560px] "
-            src={videoUrl}
-          />
-        </div>
-      ) : (
-        <div className="relative md:h-[560px] mx-auto rounded-3xl border-4 border-gray-300 w-72 p-4">
-          <Image
-            src="/video.png"
-            alt="phone"
-            width={400}
-            height={800}
-            className="mt-10"
-          />
-          <p className="text-gray-400 text-center">
-            Your video will appear here
-          </p>
-          {generating && (
-            <p className="text-gray-400 text-center">
-              We are generating your video. {progress}% complete.
-            </p>
-          )}
-        </div>
-      )}
+    <div className="flex flex-col gap-4">
+      <button
+        onClick={generateVideo}
+        disabled={images.length === 0 || !audioTrack || generating}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-4 md:mb-0 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {generating ? "Generating..." : "Create Video"}
+      </button>
+      <div className="flex flex-col gap-4 border-2 border-gray-300 p-4 rounded-md min-h-128">
+        {videoUrl && progress === 100 ? (
+          <div className="mt-4 space-y-4 ">
+            <video
+              controls
+              className="w-full rounded-lg w-72 md:h-[560px] "
+              src={videoUrl}
+            />
+          </div>
+        ) : (
+          <div className="relative md:h-[560px] mx-auto rounded-3xl border-4 border-gray-300 w-72 p-4">
+            <Image
+              src="/video.png"
+              alt="phone"
+              width={400}
+              height={800}
+              className="mt-10"
+            />
+            {generating ? (
+              <p className="text-gray-400 text-center mt-2">
+                We are generating your video. {Math.floor(progress)}% complete.
+              </p>
+            ) : (
+              <p className="text-gray-400 text-center mt-2">
+                Your video will appear here
+              </p>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
