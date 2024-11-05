@@ -96,18 +96,9 @@ export default function VideoGenerator({
     }
   }, [triggerGeneration]);
 
-  const handleDownload = () => {
-    if (videoUrl) {
-      const a = document.createElement("a");
-      a.href = videoUrl;
-      a.download = "montage.mp4";
-      a.click();
-    }
-  };
-
   return (
     <div className="w-full max-w-3xl">
-      {videoUrl ? (
+      {videoUrl && progress === 100 ? (
         <div className="mt-4 space-y-4 ">
           <video
             controls
@@ -127,6 +118,11 @@ export default function VideoGenerator({
           <p className="text-gray-400 text-center">
             Your video will appear here
           </p>
+          {generating && (
+            <p className="text-gray-400 text-center">
+              We are generating your video. {progress}% complete.
+            </p>
+          )}
         </div>
       )}
     </div>

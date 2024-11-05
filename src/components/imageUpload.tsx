@@ -1,6 +1,7 @@
 import { Inbox } from "lucide-react";
 import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import Image from "next/image";
 
 interface ImageUploadProps {
   images: File[];
@@ -51,10 +52,12 @@ export default function ImageUpload({ images, setImages }: ImageUploadProps) {
       <div className="mt-4 p-4 grid grid-cols-4 max-h-72 gap-4 overflow-y-auto">
         {images.map((file, index) => (
           <div key={index} className="relative">
-            <img
+            <Image
               src={URL.createObjectURL(file)}
               alt={`Upload ${index + 1}`}
               className="w-full h-24 object-cover rounded"
+              width={100}
+              height={100}
             />
             <button
               onClick={() => removeImage(index)}
