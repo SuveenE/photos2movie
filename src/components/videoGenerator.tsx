@@ -117,12 +117,6 @@ export default function VideoGenerator({
               className="w-full rounded-lg w-72 md:h-[560px] "
               src={videoUrl}
             />
-            <button
-              onClick={handleDownload}
-              className="w-fit bg-green-500 text-black py-3 rounded-lg p-4"
-            >
-              Download Video
-            </button>
           </div>
         ) : (
           <div className="relative md:h-[560px] mx-auto rounded-3xl border-4 border-gray-300 w-72 p-4">
