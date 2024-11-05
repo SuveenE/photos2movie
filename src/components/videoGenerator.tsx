@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { fetchFile } from "@ffmpeg/util";
 import Image from "next/image";
+import { DownloadIcon } from "lucide-react";
 
 interface VideoGeneratorProps {
   images: File[];
@@ -85,15 +86,29 @@ export default function VideoGenerator({
     }
   };
 
+  const handleDownload = () => {
+    if (videoUrl) {
+      const a = document.createElement("a");
+      a.href = videoUrl;
+      a.download = "montage.mp4";
+      a.click();
+    }
+  };
+
   return (
     <div className="flex flex-col gap-4">
-      <button
-        onClick={generateVideo}
-        disabled={images.length === 0 || !audioTrack || generating}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-4 md:mb-0 rounded disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        {generating ? "Generating..." : "Create Video"}
-      </button>
+      <div className="flex flex-row gap-4 items-center">
+        <button
+          onClick={generateVideo}
+          disabled={images.length === 0 || !audioTrack || generating}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-4 md:mb-0 rounded disabled:opacity-50 disabled:cursor-not-allowed w-full"
+        >
+          {generating ? "Generating..." : "Create Video"}
+        </button>
+        {videoUrl && progress === 100 ? (
+          <DownloadIcon className="w-[10%]" onClick={handleDownload} />
+        ) : null}
+      </div>
       <div className="flex flex-col gap-4 border-2 border-gray-300 p-4 rounded-md min-h-128">
         {videoUrl && progress === 100 ? (
           <div className="mt-4 space-y-4 ">
@@ -102,6 +117,12 @@ export default function VideoGenerator({
               className="w-full rounded-lg w-72 md:h-[560px] "
               src={videoUrl}
             />
+            <button
+              onClick={handleDownload}
+              className="w-fit bg-green-500 text-black py-3 rounded-lg p-4"
+            >
+              Download Video
+            </button>
           </div>
         ) : (
           <div className="relative md:h-[560px] mx-auto rounded-3xl border-4 border-gray-300 w-72 p-4">
