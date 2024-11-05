@@ -6,15 +6,11 @@ import Image from "next/image";
 interface VideoGeneratorProps {
   images: File[];
   audioTrack: string;
-  triggerGeneration: boolean;
-  setTriggerGeneration: (value: boolean) => void;
 }
 
 export default function VideoGenerator({
   images,
   audioTrack,
-  triggerGeneration,
-  setTriggerGeneration,
 }: VideoGeneratorProps) {
   const [generating, setGenerating] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -88,13 +84,6 @@ export default function VideoGenerator({
       setGenerating(false);
     }
   };
-
-  useEffect(() => {
-    if (triggerGeneration) {
-      generateVideo();
-      setTriggerGeneration(false);
-    }
-  }, [triggerGeneration]);
 
   return (
     <div className="flex flex-col gap-4">

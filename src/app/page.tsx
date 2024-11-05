@@ -8,19 +8,6 @@ import VideoGenerator from "../components/videoGenerator";
 export default function Home() {
   const [images, setImages] = useState<File[]>([]);
   const [selectedAudio, setSelectedAudio] = useState<string>("");
-  const [startGeneration, setStartGeneration] = useState<boolean>(false);
-  const [triggerGeneration, setTriggerGeneration] = useState<boolean>(false);
-
-  const handleCreateVideo = () => {
-    setStartGeneration(true);
-    setTriggerGeneration(true);
-    if (window.innerWidth < 768) {
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: "smooth",
-      });
-    }
-  };
 
   return (
     <div className="flex bg-white text-black flex-col items-center justify-items-center min-h-screen p-12  pb-20 mx-auto">
@@ -37,12 +24,7 @@ export default function Home() {
           />
         </div>
         <div className="col-span-2 mt-4 md:mt-0">
-          <VideoGenerator
-            images={images}
-            audioTrack={selectedAudio}
-            triggerGeneration={triggerGeneration}
-            setTriggerGeneration={setTriggerGeneration}
-          />
+          <VideoGenerator images={images} audioTrack={selectedAudio} />
         </div>
       </div>
     </div>
