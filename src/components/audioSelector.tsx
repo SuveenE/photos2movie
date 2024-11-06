@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PauseCircleIcon, PlayCircleIcon } from "lucide-react";
+import { PauseCircleIcon, PlayCircleIcon, Music } from "lucide-react";
 
 interface AudioSelectorProps {
   selectedAudio: string;
@@ -39,7 +39,7 @@ export default function AudioSelector({
 
   return (
     <div className="w-full max-w-3xl">
-      <h3 className="text-md font-semibold mb-4">Select Background Music:</h3>
+      <h3 className="flex flex-row gap-4 text-md font-semibold mb-4"><span className="text-indigo-600"><Music /></span> Select Background Music:</h3>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {audioTracks.map((track) => (
           <div
