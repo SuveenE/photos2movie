@@ -11,9 +11,9 @@ export default function Home() {
 
   return (
     <div className="flex bg-white text-black flex-col items-center justify-items-center min-h-screen p-12  pb-20 mx-auto">
-      <p className="text-xl font-bold">Create Your Photo Montage</p>
+      <p className="text-xl font-bold">Photos to video in seconds.</p>
       <p className="text-gray-600 mt-2">
-        Upload up to 50 images to create a video montage!
+        Upload images, add music, and create a photo montage!
       </p>
       <div className="md:grid md:grid-cols-5 gap-4 mt-4 md:min-w-[1000px]">
         <div className="flex flex-col gap-2 md:gap-4 col-span-3">
