@@ -42,7 +42,7 @@ export default function ImageUpload({ images, setImages }: ImageUploadProps) {
           ${isDragActive ? "border-blue-500 bg-blue-50" : "border-gray-300"}`}
       >
         <input {...getInputProps()} />
-        <Inbox className="w-8 h-8 text-blue-500 mx-auto" />
+        <Inbox className="w-8 h-8 text-indigo-600 mx-auto" />
         <p>Drag & drop images here, or click to select files</p>
         <p className="text-sm text-gray-500">({images.length}/50 images)</p>
       </div>

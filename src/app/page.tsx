@@ -11,8 +11,8 @@ export default function Home() {
 
   return (
     <div className="flex bg-white text-black flex-col items-center justify-items-center min-h-screen p-12  pb-20 mx-auto">
-      <p className="text-xl font-bold">Photos to video in seconds.</p>
-      <p className="text-gray-600 mt-2">
+      <p className="text-2xl font-bold">Photos to video in seconds. 🎥</p>
+      <p className="text-gray-600 mt-2 mb-4">
         Upload images, add music, and create a beautiful photo montage!
       </p>
       <div className="md:grid md:grid-cols-5 gap-4 mt-4 md:min-w-[1000px]">
@@ -22,7 +22,7 @@ export default function Home() {
             selectedAudio={selectedAudio}
             setSelectedAudio={setSelectedAudio}
           />
-        </div>x
+        </div>
         <div className="col-span-2 mt-4 md:mt-0">
           <VideoGenerator images={images} audioTrack={selectedAudio} />
         </div>

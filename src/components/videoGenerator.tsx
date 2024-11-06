@@ -101,7 +101,7 @@ export default function VideoGenerator({
         <button
           onClick={generateVideo}
           disabled={images.length === 0 || !audioTrack || generating}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-4 md:mb-0 rounded disabled:opacity-50 disabled:cursor-not-allowed w-full"
+          className="bg-indigo-600 hover:bg-indigo-800 text-white font-bold py-2 px-4 mb-4 md:mb-0 rounded disabled:opacity-50 disabled:cursor-not-allowed w-full"
         >
           {generating ? "Generating..." : "Create Video"}
         </button>

@@ -39,14 +39,19 @@ export default function AudioSelector({
 
   return (
     <div className="w-full max-w-3xl">
-      <h3 className="flex flex-row gap-4 text-md font-semibold mb-4"><span className="text-indigo-600"><Music /></span> Select Background Music:</h3>
+      <h3 className="flex flex-row gap-4 text-md font-semibold mb-4">
+        <span className="text-indigo-600">
+          <Music />
+        </span>{" "}
+        Select Background Music:
+      </h3>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {audioTracks.map((track) => (
           <div
             key={track.id}
             className={`flex flex-row gap-2 border w-[130px] mx-auto rounded-lg p-3 ${
               selectedAudio === track.file
-                ? "border-blue-500 bg-blue-50"
+                ? "border-2 border-indigo-600 bg-indigo-50"
                 : "border-gray-200"
             }`}
           >
@@ -58,7 +63,7 @@ export default function AudioSelector({
             </button>
             <button
               onClick={() => togglePlay(track.file)}
-              className="text-sm text-blue-600 hover:text-blue-800"
+              className="text-sm text-indigo-600 hover:text-indigo-800"
             >
               {playingAudio === track.file ? (
                 <PauseCircleIcon />
