@@ -16,6 +16,9 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Photos to Video.",
   description: "Photos to Video in seconds.",
+  icons: {
+    icon: "/camera.png",
+  },
 };
 
 export default function RootLayout({
