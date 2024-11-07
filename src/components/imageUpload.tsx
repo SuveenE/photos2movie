@@ -32,11 +32,11 @@ export default function ImageUpload({ images, setImages }: ImageUploadProps) {
   });
 
   useEffect(() => {
-   imageUrls.forEach(url => URL.revokeObjectURL(url));
-    
-    const urls = images.map(file => URL.createObjectURL(file));
+    imageUrls.forEach((url) => URL.revokeObjectURL(url));
+
+    const urls = images.map((file) => URL.createObjectURL(file));
     setImageUrls(urls);
-    return () => urls.forEach(url => URL.revokeObjectURL(url));
+    return () => urls.forEach((url) => URL.revokeObjectURL(url));
   }, [images]);
 
   const removeImage = (index: number) => {
@@ -62,7 +62,7 @@ export default function ImageUpload({ images, setImages }: ImageUploadProps) {
         {images.map((file, index) => (
           <div key={index} className="relative">
             <Image
-              src={imageUrls[index] || ''}
+              src={imageUrls[index] || ""}
               alt={`Upload ${index + 1}`}
               className="w-full h-24 object-cover rounded"
               width={100}

@@ -36,7 +36,7 @@ export default function VideoGenerator({
         .map((_, i) => `file 'image${i}.jpg'\nduration 1`)
         .join("\n");
       await ffmpeg.writeFile("concat.txt", concat);
-      setProgress(45); 
+      setProgress(45);
 
       const audioResponse = await fetch(audioTrack);
       const audioData = await audioResponse.arrayBuffer();
