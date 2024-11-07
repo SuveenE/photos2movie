@@ -1,5 +1,5 @@
 import { Inbox } from "lucide-react";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import Image from "next/image";
 
@@ -10,6 +10,7 @@ interface ImageUploadProps {
 
 export default function ImageUpload({ images, setImages }: ImageUploadProps) {
   const [error, setError] = useState<string>("");
+  const [imageUrls, setImageUrls] = useState<string[]>([]);
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
@@ -29,6 +30,14 @@ export default function ImageUpload({ images, setImages }: ImageUploadProps) {
       "image/*": [".jpeg", ".jpg", ".png"],
     },
   });
+
+  useEffect(() => {
+   imageUrls.forEach(url => URL.revokeObjectURL(url));
+    
+    const urls = images.map(file => URL.createObjectURL(file));
+    setImageUrls(urls);
+    return () => urls.forEach(url => URL.revokeObjectURL(url));
+  }, [images]);
 
   const removeImage = (index: number) => {
     setImages(images.filter((_, i) => i !== index));
@@ -53,7 +62,7 @@ export default function ImageUpload({ images, setImages }: ImageUploadProps) {
         {images.map((file, index) => (
           <div key={index} className="relative">
             <Image
-              src={URL.createObjectURL(file)}
+              src={imageUrls[index] || ''}
               alt={`Upload ${index + 1}`}
               className="w-full h-24 object-cover rounded"
               width={100}
