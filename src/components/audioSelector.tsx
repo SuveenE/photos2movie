@@ -14,10 +14,8 @@ export default function AudioSelector({
   selectedAudio,
   setSelectedAudio,
 }: AudioSelectorProps) {
-  // Add state to track which audio is currently playing
   const [playingAudio, setPlayingAudio] = useState<string | null>(null);
 
-  // Handle play/pause
   const togglePlay = (trackFile: string) => {
     const audio = document.getElementById(trackFile) as HTMLAudioElement;
 
@@ -25,7 +23,6 @@ export default function AudioSelector({
       audio.pause();
       setPlayingAudio(null);
     } else {
-      // Pause any currently playing audio
       if (playingAudio) {
         const currentAudio = document.getElementById(
           playingAudio,

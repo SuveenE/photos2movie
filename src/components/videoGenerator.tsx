@@ -24,29 +24,25 @@ export default function VideoGenerator({
     try {
       const ffmpeg = new FFmpeg();
       await ffmpeg.load();
-      setProgress(10); // Loading FFmpeg
+      setProgress(10);
 
-      // Load images
       for (let i = 0; i < images.length; i++) {
         const imageData = await fetchFile(images[i]);
         await ffmpeg.writeFile(`image${i}.jpg`, imageData);
-        setProgress(10 + (i / images.length) * 30); // Images take 30% of progress
+        setProgress(10 + (i / images.length) * 30);
       }
 
-      // Create concat file
       const concat = images
         .map((_, i) => `file 'image${i}.jpg'\nduration 1`)
         .join("\n");
       await ffmpeg.writeFile("concat.txt", concat);
-      setProgress(45); // Concat file created
+      setProgress(45);
 
-      // Load audio
       const audioResponse = await fetch(audioTrack);
       const audioData = await audioResponse.arrayBuffer();
       await ffmpeg.writeFile("audio.mp3", new Uint8Array(audioData));
       setProgress(55);
 
-      // Generate video
       await ffmpeg.exec([
         "-f",
         "concat",
@@ -57,27 +53,26 @@ export default function VideoGenerator({
         "-i",
         "audio.mp3",
         "-c:v",
-        "libx264", // Specify video codec
+        "libx264",
         "-c:a",
-        "aac", // Specify audio codec
+        "aac",
         "-b:a",
-        "192k", // Audio bitrate
+        "192k",
         "-pix_fmt",
         "yuv420p",
         "-vf",
         "scale=720:1280:force_original_aspect_ratio=decrease,pad=720:1280:(ow-iw)/2:(oh-ih)/2",
         "-shortest",
-        "-y", // Overwrite output if exists
+        "-y",
         "output.mp4",
       ]);
-      setProgress(85); // Video generated
+      setProgress(85);
 
-      // Get the output file
       const data = await ffmpeg.readFile("output.mp4");
       const blob = new Blob([data], { type: "video/mp4" });
       const url = URL.createObjectURL(blob);
       setVideoUrl(url);
-      setProgress(100); // Complete
+      setProgress(100);
     } catch (error) {
       console.error("Error generating video:", error);
       alert("Error generating video. Please try again.");
