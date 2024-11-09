@@ -3,88 +3,99 @@ import { useState, useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import Image from "next/image";
 import {
-    DndContext,
-    closestCenter,
-    KeyboardSensor,
-    PointerSensor,
-    useSensor,
-    useSensors,
-  } from "@dnd-kit/core";
-  import {
-    SortableContext,
-    sortableKeyboardCoordinates,
-    useSortable,
-    arrayMove,
-  } from "@dnd-kit/sortable";
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  arrayMove,
+} from "@dnd-kit/sortable";
 
 interface ImageUploadProps {
   images: File[];
   setImages: (files: File[]) => void;
 }
 
-function SortableImage({ file, url, index, onRemove }: {
-    file: File;
-    url: string;
-    index: number;
-    onRemove: (index: number) => void;
-  }) {
-    const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+function SortableImage({
+  file,
+  url,
+  index,
+  onRemove,
+}: {
+  file: File;
+  url: string;
+  index: number;
+  onRemove: (index: number) => void;
+}) {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({
       id: url,
     });
-  
-    const style = {
-      transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
-      transition,
-    };
-  
-    return (
-      <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-        <div className="relative">
-          <Image
-            src={url}
-            alt={`Upload ${index + 1}`}
-            className="w-full h-24 object-cover rounded"
-            width={100}
-            height={100}
-          />
-          <button
-            onClick={() => onRemove(index)}
-            className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6"
-          >
-            ×
-          </button>
-        </div>
+
+  const style = {
+    transform: transform
+      ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
+      : undefined,
+    transition,
+  };
+
+  return (
+    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+      <div className="relative">
+        <Image
+          src={url}
+          alt={`Upload ${index + 1}`}
+          className="w-full h-24 object-cover rounded"
+          width={100}
+          height={100}
+        />
+        <button
+          onClick={() => onRemove(index)}
+          className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6"
+        >
+          ×
+        </button>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
 export default function ImageUpload({ images, setImages }: ImageUploadProps) {
   const [error, setError] = useState<string>("");
   const [imageUrls, setImageUrls] = useState<Map<File, string>>(new Map());
 
-
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   function handleDragEnd(event: any) {
     const { active, over } = event;
-    
+
     if (active.id !== over.id) {
-        const oldIndex = images.findIndex(file => imageUrls.get(file) === active.id);
-        const newIndex = images.findIndex(file => imageUrls.get(file) === over.id);
-        
-        setImages(arrayMove(images, oldIndex, newIndex));
-      }
+      const oldIndex = images.findIndex(
+        (file) => imageUrls.get(file) === active.id,
+      );
+      const newIndex = images.findIndex(
+        (file) => imageUrls.get(file) === over.id,
+      );
+
+      setImages(arrayMove(images, oldIndex, newIndex));
+    }
   }
 
   useEffect(() => {
     // Only create URLs for new images
     const newImageUrls = new Map(imageUrls);
-    
+
     images.forEach((file) => {
       if (!newImageUrls.has(file)) {
         newImageUrls.set(file, URL.createObjectURL(file));
@@ -146,17 +157,20 @@ export default function ImageUpload({ images, setImages }: ImageUploadProps) {
       {error && <p className="text-red-500 mt-2">{error}</p>}
 
       <div className="mt-4 p-4 grid grid-cols-4 max-h-72 gap-4 overflow-y-auto">
-      <DndContext
+        <DndContext
           sensors={sensors}
           collisionDetection={closestCenter}
           onDragEnd={handleDragEnd}
         >
-          <SortableContext key={3} items={images.map(file => imageUrls.get(file) || '')}>
+          <SortableContext
+            key={3}
+            items={images.map((file) => imageUrls.get(file) || "")}
+          >
             {images.map((file, index) => (
               <SortableImage
                 key={imageUrls.get(file)}
                 file={file}
-                url={imageUrls.get(file) || ''}
+                url={imageUrls.get(file) || ""}
                 index={index}
                 onRemove={removeImage}
               />
