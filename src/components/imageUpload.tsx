@@ -9,6 +9,7 @@ import {
   PointerSensor,
   useSensor,
   useSensors,
+  DragEndEvent,
 } from "@dnd-kit/core";
 import {
   SortableContext,
@@ -23,12 +24,10 @@ interface ImageUploadProps {
 }
 
 function SortableImage({
-  file,
   url,
   index,
   onRemove,
 }: {
-  file: File;
   url: string;
   index: number;
   onRemove: (index: number) => void;
@@ -48,13 +47,17 @@ function SortableImage({
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
       <div className="relative">
-        <Image
-          src={url}
-          alt={`Upload ${index + 1}`}
-          className="w-full h-24 object-cover rounded"
-          width={100}
-          height={100}
-        />
+        {url ? (
+          <Image
+            src={url}
+            alt={`Upload ${index + 1}`}
+            className="w-full h-24 object-cover rounded"
+            width={100}
+            height={100}
+          />
+        ) : (
+          <div className="w-full h-24 bg-gray-200 rounded"></div>
+        )}
         <button
           onClick={() => onRemove(index)}
           className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6"
@@ -77,15 +80,15 @@ export default function ImageUpload({ images, setImages }: ImageUploadProps) {
     }),
   );
 
-  function handleDragEnd(event: any) {
+  function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
 
-    if (active.id !== over.id) {
+    if (active.id !== over?.id) {
       const oldIndex = images.findIndex(
         (file) => imageUrls.get(file) === active.id,
       );
       const newIndex = images.findIndex(
-        (file) => imageUrls.get(file) === over.id,
+        (file) => imageUrls.get(file) === over?.id,
       );
 
       setImages(arrayMove(images, oldIndex, newIndex));
@@ -163,13 +166,11 @@ export default function ImageUpload({ images, setImages }: ImageUploadProps) {
           onDragEnd={handleDragEnd}
         >
           <SortableContext
-            key={3}
             items={images.map((file) => imageUrls.get(file) || "")}
           >
             {images.map((file, index) => (
               <SortableImage
-                key={imageUrls.get(file)}
-                file={file}
+                key={`${file.name}-${file.size}-${index}`}
                 url={imageUrls.get(file) || ""}
                 index={index}
                 onRemove={removeImage}

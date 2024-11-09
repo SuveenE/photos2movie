@@ -52,7 +52,7 @@ export default function AudioSelector({
         {audioTracks.map((track) => (
           <div
             key={track.id}
-            className={`flex flex-row justify-between gap-2 border w-full mx-auto rounded-lg p-3 ${
+            className={`flex flex-row  gap-2 border w-full mx-auto rounded-lg p-3 ${
               selectedAudio === track.file
                 ? "border-2 border-indigo-600 bg-indigo-50"
                 : "border-gray-200"
@@ -60,7 +60,7 @@ export default function AudioSelector({
           >
             <button
               onClick={() => setSelectedAudio(track.file)}
-              className={`rounded-lg `}
+              className={`rounded-lg flex-auto`}
             >
               {track.name}
             </button>
