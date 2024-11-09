@@ -73,6 +73,7 @@ export default function VideoGenerator({
       const url = URL.createObjectURL(blob);
       setVideoUrl(url);
       setProgress(100);
+      localStorage.removeItem('uploadedImages');
     } catch (error) {
       console.error("Error generating video:", error);
       alert("Error generating video. Please try again.");
