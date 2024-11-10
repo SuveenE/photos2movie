@@ -91,8 +91,14 @@ export default function ImageUpload({ images, setImages }: ImageUploadProps) {
         (file) => imageUrls.get(file) === over?.id,
       );
 
+      console.log("oldIndex", oldIndex);
+      console.log("newIndex", newIndex);
+    //   const oldIndex = parseInt(active.id.toString());
+    //   const newIndex = parseInt(over?.id.toString() || "0");
+
       setImages(arrayMove(images, oldIndex, newIndex));
     }
+    console.log("images", images);
   }
 
   useEffect(() => {
