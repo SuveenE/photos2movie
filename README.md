@@ -4,7 +4,7 @@
 
 ## Super quick demo
 
-https://github.com/user-attachments/assets/dfe1d758-78dd-455d-a8e9-73b5ef3571b2
+https://github.com/user-attachments/assets/370ee0d4-290c-4c2e-b146-8e5c43f62111
 
 ## The Story behind
 
