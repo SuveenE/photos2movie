@@ -91,18 +91,12 @@ export default function ImageUpload({ images, setImages }: ImageUploadProps) {
         (file) => imageUrls.get(file) === over?.id,
       );
 
-      console.log("oldIndex", oldIndex);
-      console.log("newIndex", newIndex);
-    //   const oldIndex = parseInt(active.id.toString());
-    //   const newIndex = parseInt(over?.id.toString() || "0");
-
       setImages(arrayMove(images, oldIndex, newIndex));
     }
     console.log("images", images);
   }
 
   useEffect(() => {
-    // Only create URLs for new images
     const newImageUrls = new Map(imageUrls);
 
     images.forEach((file) => {
@@ -111,7 +105,6 @@ export default function ImageUpload({ images, setImages }: ImageUploadProps) {
       }
     });
 
-    // Cleanup URLs for removed images
     for (const [file, url] of imageUrls.entries()) {
       if (!images.includes(file)) {
         URL.revokeObjectURL(url);
@@ -121,7 +114,6 @@ export default function ImageUpload({ images, setImages }: ImageUploadProps) {
 
     setImageUrls(newImageUrls);
 
-    // Cleanup on unmount
     return () => {
       newImageUrls.forEach((url) => URL.revokeObjectURL(url));
     };
