@@ -8,10 +8,9 @@
 
 My friends and I hosted a few others to a house party recently. I was playing around with my [PaperShoot Camera](https://papershoot.com) and took a few photos. I thought it would be cool to turn those photos into a video montage. I used iMovie and it took me a good 30-40mins to do that. So I thought, why not build a web app that does that for me in **under a minute**?
 
-The funtionality is really simple and less configurable right now. 
+The funtionality is really simple and less configurable right now.
 
-This is also inspired by the short videos I've seen where photographers give disposable cameras to strangers and make videos out of the photos they take. 
-
+This is also inspired by the short videos I've seen where photographers give disposable cameras to strangers and make videos out of the photos they take.
 
 ## Getting Started
 
@@ -23,4 +22,3 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
