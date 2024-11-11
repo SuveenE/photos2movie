@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { PauseCircleIcon, PlayCircleIcon, Music } from "lucide-react";
 import { audioTracks } from "../utils/audio";

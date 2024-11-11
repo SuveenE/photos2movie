@@ -1,3 +1,5 @@
+"use client";
+
 import { Inbox } from "lucide-react";
 import { useState, useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
@@ -93,7 +95,6 @@ export default function ImageUpload({ images, setImages }: ImageUploadProps) {
 
       setImages(arrayMove(images, oldIndex, newIndex));
     }
-    console.log("images", images);
   }
 
   useEffect(() => {
