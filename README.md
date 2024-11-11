@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Phots2Video
+
+[Photo2Video](https://video.suveenellawela.com) is an open source web app that lets you turn your favorite photos into a beautiful video montage in just a few clicks.
+
+<img src="public/readme.png" alt="Photo2Video" width="600px">
+
+## The Story behind
+
+My friends and I hosted a few others to a house party recently. I was playing around with my [PaperShoot Camera](https://papershoot.com) and took a few photos. I thought it would be cool to turn those photos into a video montage. I used iMovie and it took me a good 30-40mins to do that. So I thought, why not build a web app that does that for me in **under a minute**?
+
+The funtionality is really simple and less configurable right now. 
+
+This is also inspired by the short videos I've seen where photographers give disposable cameras to strangers and make videos out of the photos they take. 
+
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
