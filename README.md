@@ -2,7 +2,9 @@
 
 [Photo2Video](https://video.suveenellawela.com) is an open source web app that lets you turn your favorite photos into a beautiful video montage in just a few clicks.
 
-<img src="public/readme.png" alt="Photo2Video" width="600px">
+
+## Super quick demo
+
 
 ## The Story behind
 
