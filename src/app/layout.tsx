@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Photos2Video.",
-  description: "Photos to Video in seconds.",
+  title: "Photos2Movie.",
+  description: "Photos to Movie in seconds.",
   icons: {
     icon: "/camera.png",
   },

@@ -1,6 +1,6 @@
-# Photos2Video
+# Photos2Movie
 
-[Photos2Video](https://video.suveenellawela.com) is an open source non-ai web app that lets you turn your favorite photos into a beautiful video montage in just a few clicks.
+[Photos2Movie](https://video.suveenellawela.com) is an open source non-ai web app that lets you turn your favorite photos into a beautiful video montage in just a few clicks.
 
 ## Super quick demo
 
