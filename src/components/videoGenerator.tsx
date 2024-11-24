@@ -103,7 +103,10 @@ export default function VideoGenerator({
           {generating ? "Generating..." : "Create Video"}
         </button>
         {videoUrl && progress === 100 ? (
-          <DownloadIcon className="w-[10%]" onClick={handleDownload} />
+          <DownloadIcon
+            className="w-[10%] cursor-pointer"
+            onClick={handleDownload}
+          />
         ) : null}
       </div>
       <div className="flex flex-col gap-4 border-2 border-gray-300 p-4 rounded-md min-h-128">
