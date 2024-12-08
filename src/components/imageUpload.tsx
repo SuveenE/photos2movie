@@ -122,8 +122,8 @@ export default function ImageUpload({ images, setImages }: ImageUploadProps) {
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
-      if (images.length + acceptedFiles.length > 50) {
-        setError("Maximum 50 images allowed");
+      if (images.length + acceptedFiles.length > 150) {
+        setError("Maximum 150 images allowed");
         return;
       }
       setImages([...images, ...acceptedFiles]);
@@ -153,7 +153,7 @@ export default function ImageUpload({ images, setImages }: ImageUploadProps) {
         <input {...getInputProps()} />
         <Inbox className="w-8 h-8 text-indigo-600 mx-auto" />
         <p>Drag & drop images here, or click to select files</p>
-        <p className="text-sm text-gray-500">({images.length}/50 images)</p>
+        <p className="text-sm text-gray-500">({images.length}/150 images)</p>
       </div>
 
       {error && <p className="text-red-500 mt-2">{error}</p>}
