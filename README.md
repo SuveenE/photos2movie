@@ -1,4 +1,4 @@
-[![GitHub stars](https://img.shields.io/github/stars/FoloUp/FoloUp?style=social)](https://github.com/SuveenE/photos2movie/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/SuveenE/photos2movie?style=social)](https://github.com/SuveenE/photos2movie/stargazers)
 ![License](https://img.shields.io/github/license/SuveenE/photos2movie)
 [![Twitter Follow](https://img.shields.io/twitter/follow/SuveenE?style=social)](https://x.com/SuveenE)
 
