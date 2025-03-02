@@ -1,3 +1,7 @@
+[![GitHub stars](https://img.shields.io/github/stars/FoloUp/FoloUp?style=social)](https://github.com/SuveenE/photos2movie/stargazers)
+![License](https://img.shields.io/github/license/SuveenE/photos2movie)
+[![Twitter Follow](https://img.shields.io/twitter/follow/SuveenE?style=social)](https://x.com/SuveenE)
+
 # Photos2Movie
 
 [Photos2Movie](https://video.suveenellawela.com) is an open source non-ai web app that lets you turn your favorite photos into a beautiful video montage in just a few clicks.
